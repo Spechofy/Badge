@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: db_badge
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: db_badge
+    ports:
+      - "27017:27017"
+    volumes:
+      - pgdataMongo:/var/lib/mongodb/data
+
+volumes:
+  pgdataMongo:
