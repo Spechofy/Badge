@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  badge-service:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    networks:
+      - melodyme-net
   mongodb:
     image: mongo:latest
     container_name: db_badge
