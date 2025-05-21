@@ -31,13 +31,7 @@ public class ProfilService {
         return profilRepository.save(profil);
     }
 
-    public Profil updateProfil(String id, Profil updatedProfil) {
-        return profilRepository.findById(id).map(profil -> {
-            profil.setDescription(updatedProfil.getDescription());
-            profil.setUserId(updatedProfil.getUserId());
-            return profilRepository.save(profil);
-        }).orElseThrow(() -> new RuntimeException("Profil not found"));
-    }
+
 
     public void deleteProfil(String id) {
         profilRepository.deleteById(id);

@@ -12,20 +12,20 @@ public class Profil {
     private String description;
     private String userId;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getProfilId() {
         return profilId;
     }
 
     public void setProfilId(String profilId) {
         this.profilId = profilId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUserId() {

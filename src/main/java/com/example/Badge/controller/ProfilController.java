@@ -44,15 +44,6 @@ public class ProfilController {
         return profilService.createProfil(profil);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Profil> updateProfil(@PathVariable String id, @RequestBody Profil profil) {
-        try {
-            Profil updatedProfil = profilService.updateProfil(id, profil);
-            return ResponseEntity.ok(updatedProfil);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProfil(@PathVariable String id) {
