@@ -1,10 +1,15 @@
 package com.example.Badge.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "profils")
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Profil {
 
     @Id

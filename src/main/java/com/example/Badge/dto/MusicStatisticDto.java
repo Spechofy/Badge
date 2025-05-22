@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MusicStatisticDTO {
+public class MusicStatisticDto {
     private double musicCompatibility;
     private double artistCompatibility;
     private double styleCompatibility;

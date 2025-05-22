@@ -1,20 +1,21 @@
 version: '3.8'
 services:
-#  badge-service:
-#    build: .
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - mongodb
-#      - kafka
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=default
-#    networks:
-#      - melodyme-net
+  badge-service:
+    build: .
+    container_name: microservice_badge
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+      - kafka
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    networks:
+      - melodyme-net
 
   mongodb:
     image: mongo:latest
-    container_name: db_badge
+    container_name: db_M_badge
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongo
@@ -29,6 +30,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper_M_badge
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -37,6 +39,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka_M_badge
     depends_on:
       - zookeeper
     ports:

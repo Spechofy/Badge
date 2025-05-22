@@ -1,7 +1,12 @@
 package com.example.Badge.service;
 
+import com.example.Badge.kafka.event.Action;
+import com.example.Badge.kafka.event.EventKafkaProfil;
+import com.example.Badge.kafka.Topics;
 import com.example.Badge.model.Profil;
 import com.example.Badge.repository.ProfilRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -9,11 +14,12 @@ import java.util.Optional;
 @Service
 public class ProfilService {
 
-    private final ProfilRepository profilRepository;
+    @Autowired
+    private  ProfilRepository profilRepository;
 
-    public ProfilService(ProfilRepository profilRepository) {
-        this.profilRepository = profilRepository;
-    }
+    @Autowired
+    private KafkaTemplate<String, EventKafkaProfil> kafkaTemplate;
+
 
     public List<Profil> getAllProfils() {
         return profilRepository.findAll();
@@ -28,9 +34,10 @@ public class ProfilService {
     }
 
     public Profil createProfil(Profil profil) {
-        return profilRepository.save(profil);
+        EventKafkaProfil event = new EventKafkaProfil(Action.CREATE, profil);
+        kafkaTemplate.send(Topics.PROFILE, event);
+        return profil;
     }
-
 
 
     public void deleteProfil(String id) {

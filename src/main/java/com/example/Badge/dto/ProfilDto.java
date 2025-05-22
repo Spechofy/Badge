@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RatingStaticDTO {
-    private String ratingId;
-    private String comment;
-    private int rate;
+public class ProfilDto {
+
+    private String profilId;
+    private String description;
+    private String userId;
 }

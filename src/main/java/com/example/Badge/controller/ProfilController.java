@@ -1,5 +1,6 @@
 package com.example.Badge.controller;
 
+import com.example.Badge.kafka.Topics;
 import com.example.Badge.model.Profil;
 import com.example.Badge.service.ProfilService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import java.util.List;
 public class ProfilController {
 
     private final ProfilService profilService;
-    @Autowired
-    private KafkaTemplate<String, Profil> kafkaTemplate;
 
     public ProfilController(ProfilService profilService) {
         this.profilService = profilService;
@@ -44,14 +43,20 @@ public class ProfilController {
     }
 
     @PostMapping
-    public void createProfil(@RequestBody Profil profil) {
-         kafkaTemplate.send("profils-topic",profil);
+    public ResponseEntity<String> createProfil(@RequestBody Profil profil) {
+        profilService.createProfil(profil);
+        return ResponseEntity.ok("Profil envoyé via Kafka avec succès !");
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProfil(@PathVariable String id) {
-        profilService.deleteProfil(id);
+    public ResponseEntity<String> deleteProfil(@PathVariable String id) {
+        Profil profil = profilService.getProfilByUserId(id);
+        if (profil != null) {
+            profilService.deleteProfil(id);
+            return ResponseEntity.ok("demande suppression envoyé via Kafka avec succès !");
+        }
+
         return ResponseEntity.noContent().build();
     }
 }

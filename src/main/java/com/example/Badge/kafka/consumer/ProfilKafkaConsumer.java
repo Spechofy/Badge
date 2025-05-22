@@ -1,5 +1,7 @@
 package com.example.Badge.kafka.consumer;
 
+import com.example.Badge.kafka.event.EventKafkaProfil;
+import com.example.Badge.kafka.Topics;
 import com.example.Badge.model.Profil;
 import com.example.Badge.repository.ProfilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,14 @@ public class ProfilKafkaConsumer {
     @Autowired
     private  ProfilRepository profilRepository;
 
-    @KafkaListener(topics = "profils-topic", groupId = "spechofy-group")
-    public void listenProfil(Profil profil) {
-        profilRepository.save(profil);
-        System.out.println(profil);
+    @KafkaListener(topics = Topics.PROFILE, groupId = "spechofy-group")
+    public void listenProfil(EventKafkaProfil eventKafka) {
+        Profil profil = (Profil) eventKafka.getData();
+        switch (eventKafka.getAction()){
+            case CREATE: profilRepository.save(profil); break;
+            case DELETE: profilRepository.delete(profil); break;
+        }
     }
+
 }
 

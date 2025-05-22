@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentsStaticDTO {
+public class CommentsStaticDto {
     private String commentsId;
     private String content;
     private LocalDateTime datePosted;
