@@ -2,7 +2,9 @@ package com.example.Badge.controller;
 
 import com.example.Badge.model.Profil;
 import com.example.Badge.service.ProfilService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 public class ProfilController {
 
     private final ProfilService profilService;
+    @Autowired
+    private KafkaTemplate<String, Profil> kafkaTemplate;
 
     public ProfilController(ProfilService profilService) {
         this.profilService = profilService;
@@ -40,8 +44,8 @@ public class ProfilController {
     }
 
     @PostMapping
-    public Profil createProfil(@RequestBody Profil profil) {
-        return profilService.createProfil(profil);
+    public void createProfil(@RequestBody Profil profil) {
+         kafkaTemplate.send("profils-topic",profil);
     }
 
 

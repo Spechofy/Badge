@@ -1,49 +1,86 @@
 package com.example.Badge.service;
 
-import com.example.Badge.model.Badge;
+import com.example.Badge.model.*;
 import com.example.Badge.repository.BadgeRepository;
+import com.example.Badge.repository.ProfilRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BadgeService {
 
-    private final BadgeRepository badgeRepository;
+    @Autowired
+    private BadgeRepository badgeRepository;
+    @Autowired
+    private ProfilRepository profilRepository;
+    @Autowired
+    private CommentsStaticService commentsStaticService;
+    @Autowired
+    private RatingStaticService ratingStaticService;
+    @Autowired
+    private MusicStatisticService musicStatisticService;
 
-    public BadgeService(BadgeRepository badgeRepository) {
-        this.badgeRepository = badgeRepository;
+
+
+    public void assignBadgesToProfil(String profilId) {
+        Profil profil = profilRepository.findById(profilId)
+                .orElseThrow(() -> new RuntimeException("Profil non trouvé"));
+
+        // Récupérer badges existants
+        List<Badge> badgesExistants = badgeRepository.findByProfilId(profilId);
+
+        String userId = profil.getUserId();
+
+        // 1. Badge Commentaires constructifs
+        List<CommentsStatic> userComments = commentsStaticService.getCommentsByUserId(userId);
+        long nbCommentairesConstructifs = userComments.stream()
+                .filter(c -> c.getRate() >= 4) // critères : commentaires avec note >= 4
+                .count();
+        if (nbCommentairesConstructifs >= 4 && !hasBadge(badgesExistants, "Badge Commentaires")) {
+            saveNewBadge(profilId, "Badge Commentaires");
+        }
+
+        // 2. Badge Évaluations positives
+        List<RatingStatic> positiveRatings = ratingStaticService.getPositiveRatings(3);
+        long nbEvaluationsPositives = positiveRatings.stream()
+                // à adapter : ici on ne filtre pas par userId, à modifier si besoin
+                .count();
+        if (nbEvaluationsPositives >= 3 && !hasBadge(badgesExistants, "Badge Évaluations Positives")) {
+            saveNewBadge(profilId, "Badge Évaluations Positives");
+        }
+
+        // 3. Badge Compatibilité musicale
+        List<MusicStatistic> stats = musicStatisticService.getAll();
+        double avgCompat = stats.stream()
+                .mapToDouble(MusicStatistic::getMusicCompatibility)
+                .average()
+                .orElse(0.0);
+        if (avgCompat >= 0.8 && !hasBadge(badgesExistants, "Badge Compatibilité Musicale")) {
+            saveNewBadge(profilId, "Badge Compatibilité Musicale");
+        }
+
+        // 4. Badge Participation événements (méthode à implémenter)
+        int nombreParticipations = getNombreParticipations(profilId);
+        if (nombreParticipations >= 5 && !hasBadge(badgesExistants, "Badge Participation")) {
+            saveNewBadge(profilId, "Badge Participation");
+        }
     }
 
-    public List<Badge> getAllBadges() {
-        return badgeRepository.findAll();
+    private boolean hasBadge(List<Badge> badges, String badgeName) {
+        return badges.stream().anyMatch(b -> b.getBadgeName().equals(badgeName));
     }
 
-    public Optional<Badge> getBadgeById(String id) {
-        return badgeRepository.findById(id);
+    private void saveNewBadge(String profilId, String badgeName) {
+        Badge badge = new Badge();
+        badge.setProfilId(profilId);
+        badge.setBadgeName(badgeName);
+        badgeRepository.save(badge);
     }
 
-    public List<Badge> getBadgesByProfilId(String profilId) {
-        return badgeRepository.findByProfilId(profilId);
-    }
+    private int getNombreParticipations(String profilId) {
 
-    public Badge createBadge(Badge badge) {
-        return badgeRepository.save(badge);
-    }
-
-    public Badge updateBadge(String id, Badge updatedBadge) {
-        return badgeRepository.findById(id).map(badge -> {
-            badge.setBadgeName(updatedBadge.getBadgeName());
-            badge.setProfilId(updatedBadge.getProfilId());
-            badge.setRatingStatic(updatedBadge.getRatingStatic());
-            badge.setCommentsStatic(updatedBadge.getCommentsStatic());
-            badge.setMusicStatistics(updatedBadge.getMusicStatistics());
-            return badgeRepository.save(badge);
-        }).orElseThrow(() -> new RuntimeException("Badge not found"));
-    }
-
-    public void deleteBadge(String id) {
-        badgeRepository.deleteById(id);
+        return 6; // exemple statique
     }
 }
-
