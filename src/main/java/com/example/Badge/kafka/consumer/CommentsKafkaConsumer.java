@@ -15,26 +15,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentsKafkaConsumer {
 
-  /**
-   * The Comments static repository.
-   */
-  @Autowired private CommentsStaticRepository commentsStaticRepository;
+    /**
+     * The Comments static repository.
+     */
+    @Autowired
+    private CommentsStaticRepository commentsStaticRepository;
 
-  /**
-   * Consume comment.
-   *
-   * @param event the event
-   */
-  @KafkaListener(topics = Topics.COMMENT, groupId = "spechofy-group")
-  public void consumeComment(final EventKafkaCommentsStatic event) {
-    Action action = event.getAction();
-    CommentsStatic comment = event.getData();
-    switch (action) {
-      case CREATE:
-        commentsStaticRepository.save(comment);
-        break;
-      default:
-        break;
+    /**
+     * Consume comment.
+     *
+     * @param event the event
+     */
+    @KafkaListener(topics = Topics.COMMENT, groupId = "spechofy-group")
+    public void consumeComment(final EventKafkaCommentsStatic event) {
+        Action action = event.getAction();
+        CommentsStatic comment = event.getData();
+        switch (action) {
+            case CREATE:
+                commentsStaticRepository.save(comment);
+                break;
+            default:
+                break;
+        }
     }
-  }
 }

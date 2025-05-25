@@ -11,17 +11,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Data
 public class RatingStatic {
-  /**
-   * The Rating id.
-   */
-  private String ratingId;
-  /**
-   * The Comment.
-   */
-  private String comment;
-  /**
-   * The Rate.
-   */
-  private int rate;
+    /**
+     * The Rating id.
+     */
+    private String ratingId;
+    /**
+     * The Comment.
+     */
+    private String comment;
+    /**
+     * The Rate.
+     */
+    private int rate;
 
 }

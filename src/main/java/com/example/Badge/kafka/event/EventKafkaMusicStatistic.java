@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKafkaMusicStatistic {
-  /**
-   * The Action.
-   */
-  private Action action;
-  /**
-   * The Data.
-   */
-  private MusicStatistic data;
+    /**
+     * The Action.
+     */
+    private Action action;
+    /**
+     * The Data.
+     */
+    private MusicStatistic data;
 }

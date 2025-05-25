@@ -21,4 +21,4 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
       imagePullSecrets:
-          - name: regcred
+        - name: regcred

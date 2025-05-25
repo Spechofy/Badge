@@ -12,16 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProfilDto {
 
-  /**
-   * The Profil id.
-   */
-  private String profilId;
-  /**
-   * The Description.
-   */
-  private String description;
-  /**
-   * The User id.
-   */
-  private String userId;
+    /**
+     * The Profil id.
+     */
+    private String profilId;
+    /**
+     * The Description.
+     */
+    private String description;
+    /**
+     * The User id.
+     */
+    private String userId;
 }

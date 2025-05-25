@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKafkaRatingStatic {
-  /**
-   * The Action.
-   */
-  private Action action;
-  /**
-   * The Data.
-   */
-  private RatingStatic data;
+    /**
+     * The Action.
+     */
+    private Action action;
+    /**
+     * The Data.
+     */
+    private RatingStatic data;
 }

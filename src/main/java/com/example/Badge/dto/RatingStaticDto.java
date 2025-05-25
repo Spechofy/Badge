@@ -11,16 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RatingStaticDto {
-  /**
-   * The Rating id.
-   */
-  private String ratingId;
-  /**
-   * The Comment.
-   */
-  private String comment;
-  /**
-   * The Rate.
-   */
-  private int rate;
+    /**
+     * The Rating id.
+     */
+    private String ratingId;
+    /**
+     * The Comment.
+     */
+    private String comment;
+    /**
+     * The Rate.
+     */
+    private int rate;
 }

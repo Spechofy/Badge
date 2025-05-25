@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKafkaCommentsStatic {
-  /**
-   * The Action.
-   */
-  private Action action;
-  /**
-   * The Data.
-   */
-  private CommentsStatic data;
+    /**
+     * The Action.
+     */
+    private Action action;
+    /**
+     * The Data.
+     */
+    private CommentsStatic data;
 }

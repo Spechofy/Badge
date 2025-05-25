@@ -13,20 +13,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Data
 public class Event {
-  /**
-   * The Profil id.
-   */
-  private String profilId;
-  /**
-   * The User id.
-   */
-  private String userId;
-  /**
-   * The Event id.
-   */
-  private String eventId;
-  /**
-   * The Event type.
-   */
-  private String eventType;
+    /**
+     * The Profil id.
+     */
+    private String profilId;
+    /**
+     * The User id.
+     */
+    private String userId;
+    /**
+     * The Event id.
+     */
+    private String eventId;
+    /**
+     * The Event type.
+     */
+    private String eventType;
 }

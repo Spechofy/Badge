@@ -13,17 +13,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class Profil {
 
-  /**
-   * The Profil id.
-   */
-  @Id private String profilId;
-  /**
-   * The Description.
-   */
-  private String description;
-  /**
-   * The User id.
-   */
-  private String userId;
+    /**
+     * The Profil id.
+     */
+    @Id
+    private String profilId;
+    /**
+     * The Description.
+     */
+    private String description;
+    /**
+     * The User id.
+     */
+    private String userId;
 
 }

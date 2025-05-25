@@ -14,28 +14,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventKafkaConsumer {
 
-  /**
-   * The Even repository.
-   */
-  @Autowired private EventRepository evenRepository;
+    /**
+     * The Even repository.
+     */
+    @Autowired
+    private EventRepository evenRepository;
 
-  /**
-   * Listen event.
-   *
-   * @param eventKafka the event kafka
-   */
-  @KafkaListener(topics = Topics.EVENT, groupId = "spechofy-group")
-  public void listenEvent(final EventKafkaEvent eventKafka) {
-    Event even = (Event) eventKafka.getData();
-    switch (eventKafka.getAction()) {
-      case CREATE:
-        evenRepository.save(even);
-        break;
-      case DELETE:
-        evenRepository.delete(even);
-        break;
-      default:
-        break;
+    /**
+     * Listen event.
+     *
+     * @param eventKafka the event kafka
+     */
+    @KafkaListener(topics = Topics.EVENT, groupId = "spechofy-group")
+    public void listenEvent(final EventKafkaEvent eventKafka) {
+        Event even = (Event) eventKafka.getData();
+        switch (eventKafka.getAction()) {
+            case CREATE:
+                evenRepository.save(even);
+                break;
+            case DELETE:
+                evenRepository.delete(even);
+                break;
+            default:
+                break;
+        }
     }
-  }
 }

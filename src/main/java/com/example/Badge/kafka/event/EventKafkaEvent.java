@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKafkaEvent {
-  /**
-   * The Action.
-   */
-  private Action action;
-  /**
-   * The Data.
-   */
-  private Event data;
+    /**
+     * The Action.
+     */
+    private Action action;
+    /**
+     * The Data.
+     */
+    private Event data;
 }

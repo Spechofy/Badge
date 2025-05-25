@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProfilRepository extends MongoRepository<Profil, String> {
-  /**
-   * Find by user id profil.
-   *
-   * @param userId the user id
-   * @return the profil
-   */
-  Profil findByUserId(String userId);
+    /**
+     * Find by user id profil.
+     *
+     * @param userId the user id
+     * @return the profil
+     */
+    Profil findByUserId(String userId);
 }

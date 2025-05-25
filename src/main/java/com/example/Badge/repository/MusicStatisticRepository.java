@@ -6,4 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * The interface Music statistic repository.
  */
-public interface MusicStatisticRepository extends MongoRepository<MusicStatistic, String> {}
+public interface MusicStatisticRepository extends MongoRepository<MusicStatistic, String> {
+}

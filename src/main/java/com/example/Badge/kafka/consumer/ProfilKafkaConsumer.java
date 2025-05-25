@@ -14,28 +14,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProfilKafkaConsumer {
 
-  /**
-   * The Profil repository.
-   */
-  @Autowired private ProfilRepository profilRepository;
+    /**
+     * The Profil repository.
+     */
+    @Autowired
+    private ProfilRepository profilRepository;
 
-  /**
-   * Listen profil.
-   *
-   * @param eventKafka the event kafka
-   */
-  @KafkaListener(topics = Topics.PROFILE, groupId = "spechofy-group")
-  public void listenProfil(final EventKafkaProfil eventKafka) {
-    Profil profil = (Profil) eventKafka.getData();
-    switch (eventKafka.getAction()) {
-      case CREATE:
-        profilRepository.save(profil);
-        break;
-      case DELETE:
-        profilRepository.delete(profil);
-        break;
-      default:
-        break;
+    /**
+     * Listen profil.
+     *
+     * @param eventKafka the event kafka
+     */
+    @KafkaListener(topics = Topics.PROFILE, groupId = "spechofy-group")
+    public void listenProfil(final EventKafkaProfil eventKafka) {
+        Profil profil = (Profil) eventKafka.getData();
+        switch (eventKafka.getAction()) {
+            case CREATE:
+                profilRepository.save(profil);
+                break;
+            case DELETE:
+                profilRepository.delete(profil);
+                break;
+            default:
+                break;
+        }
     }
-  }
 }

@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKafkaProfil {
-  /**
-   * The Action.
-   */
-  private Action action;
-  /**
-   * The Data.
-   */
-  private Profil data;
+    /**
+     * The Action.
+     */
+    private Action action;
+    /**
+     * The Data.
+     */
+    private Profil data;
 }

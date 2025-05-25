@@ -13,17 +13,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Data
 public class MusicStatistic {
-  /**
-   * The Music compatibility.
-   */
-  private double musicCompatibility;
-  /**
-   * The Artist compatibility.
-   */
-  private double artistCompatibility;
-  /**
-   * The Style compatibility.
-   */
-  private double styleCompatibility;
+    /**
+     * The Music compatibility.
+     */
+    private double musicCompatibility;
+    /**
+     * The Artist compatibility.
+     */
+    private double artistCompatibility;
+    /**
+     * The Style compatibility.
+     */
+    private double styleCompatibility;
 
 }

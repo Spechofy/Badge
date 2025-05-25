@@ -5,8 +5,10 @@ import com.example.Badge.repository.BadgeRepository;
 import com.example.Badge.repository.ProfilRepository;
 import com.example.Badge.service.assignment.BadgeAssigner;
 import com.example.Badge.service.assignment.BadgeType;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,136 +18,142 @@ import org.springframework.stereotype.Service;
 @Service
 public class BadgeService {
 
-  /**
-   * The Badge repository.
-   */
-  @Autowired private BadgeRepository badgeRepository;
+    /**
+     * The Badge repository.
+     */
+    @Autowired
+    private BadgeRepository badgeRepository;
 
-  /**
-   * The Profil repository.
-   */
-  @Autowired private ProfilRepository profilRepository;
+    /**
+     * The Profil repository.
+     */
+    @Autowired
+    private ProfilRepository profilRepository;
 
-  /**
-   * The Comments static service.
-   */
-  @Autowired private CommentsStaticService commentsStaticService;
+    /**
+     * The Comments static service.
+     */
+    @Autowired
+    private CommentsStaticService commentsStaticService;
 
-  /**
-   * The Rating static service.
-   */
-  @Autowired private RatingStaticService ratingStaticService;
+    /**
+     * The Rating static service.
+     */
+    @Autowired
+    private RatingStaticService ratingStaticService;
 
-  /**
-   * The Music statistic service.
-   */
-  @Autowired private MusicStatisticService musicStatisticService;
+    /**
+     * The Music statistic service.
+     */
+    @Autowired
+    private MusicStatisticService musicStatisticService;
 
-  /**
-   * The Event service.
-   */
-  @Autowired private EventService eventService;
+    /**
+     * The Event service.
+     */
+    @Autowired
+    private EventService eventService;
 
-  /**
-   * Assign badges to profil.
-   *
-   * @param profilId the profil id
-   */
-  public void assignBadgesToProfil(String profilId) {
-    Profil profil =
-        profilRepository
-            .findById(profilId)
-            .orElseThrow(() -> new RuntimeException("Profil non trouvé"));
-    String userId = profil.getUserId();
+    /**
+     * Assign badges to profil.
+     *
+     * @param profilId the profil id
+     */
+    public void assignBadgesToProfil(String profilId) {
+        Profil profil =
+                profilRepository
+                        .findById(profilId)
+                        .orElseThrow(() -> new RuntimeException("Profil non trouvé"));
+        String userId = profil.getUserId();
 
-    List<Badge> badgesExistants = badgeRepository.findByProfilId(profilId);
-    List<CommentsStatic> userComments = commentsStaticService.getCommentsByUserId(userId);
-    List<RatingStatic> positiveRatings = ratingStaticService.getPositiveRatings(3);
-    List<MusicStatistic> musicStats = musicStatisticService.getAll();
+        List<Badge> badgesExistants = badgeRepository.findByProfilId(profilId);
+        List<CommentsStatic> userComments = commentsStaticService.getCommentsByUserId(userId);
+        List<RatingStatic> positiveRatings = ratingStaticService.getPositiveRatings(3);
+        List<MusicStatistic> musicStats = musicStatisticService.getAll();
 
-    int nombreParticipations = getNombreParticipations(profilId);
+        int nombreParticipations = getNombreParticipations(profilId);
 
-    BadgeAssigner assigner = new BadgeAssigner(badgesExistants);
+        BadgeAssigner assigner = new BadgeAssigner(badgesExistants);
 
-    if (assigner.shouldAssignCommentBadge(userComments)) {
-      saveBadge(profilId, BadgeType.COMMENTAIRES);
+        if (assigner.shouldAssignCommentBadge(userComments)) {
+            saveBadge(profilId, BadgeType.COMMENTAIRES);
+        }
+
+        if (assigner.shouldAssignPositiveRatingsBadge(positiveRatings)) {
+            saveBadge(profilId, BadgeType.EVALUATIONS_POSITIVES);
+        }
+
+        if (assigner.shouldAssignMusicCompatibilityBadge(musicStats)) {
+            saveBadge(profilId, BadgeType.COMPATIBILITE_MUSICALE);
+        }
+
+        if (assigner.shouldAssignParticipationBadge(nombreParticipations)) {
+            saveBadge(profilId, BadgeType.PARTICIPATION);
+        }
     }
 
-    if (assigner.shouldAssignPositiveRatingsBadge(positiveRatings)) {
-      saveBadge(profilId, BadgeType.EVALUATIONS_POSITIVES);
+    /**
+     * Save badge.
+     *
+     * @param profilId  the profil id
+     * @param badgeType the badge type
+     */
+    private void saveBadge(String profilId, BadgeType badgeType) {
+        Badge badge = new Badge();
+        badge.setProfilId(profilId);
+        badge.setBadgeName(badgeType.getDisplayName());
+        badgeRepository.save(badge);
     }
 
-    if (assigner.shouldAssignMusicCompatibilityBadge(musicStats)) {
-      saveBadge(profilId, BadgeType.COMPATIBILITE_MUSICALE);
+    /**
+     * Gets nombre participations.
+     *
+     * @param profilId the profil id
+     * @return the nombre participations
+     */
+    private int getNombreParticipations(String profilId) {
+        return eventService.countEventsByProfilId(profilId);
     }
 
-    if (assigner.shouldAssignParticipationBadge(nombreParticipations)) {
-      saveBadge(profilId, BadgeType.PARTICIPATION);
+    /**
+     * Gets all badges.
+     *
+     * @return the all badges
+     */
+    public List<Badge> getAllBadges() {
+        return badgeRepository.findAll();
     }
-  }
 
-  /**
-   * Save badge.
-   *
-   * @param profilId  the profil id
-   * @param badgeType the badge type
-   */
-  private void saveBadge(String profilId, BadgeType badgeType) {
-    Badge badge = new Badge();
-    badge.setProfilId(profilId);
-    badge.setBadgeName(badgeType.getDisplayName());
-    badgeRepository.save(badge);
-  }
+    /**
+     * Gets badge by id.
+     *
+     * @param id the id
+     * @return the badge by id
+     */
+    public Optional<Badge> getBadgeById(String id) {
+        return badgeRepository.findById(id);
+    }
 
-  /**
-   * Gets nombre participations.
-   *
-   * @param profilId the profil id
-   * @return the nombre participations
-   */
-  private int getNombreParticipations(String profilId) {
-    return eventService.countEventsByProfilId(profilId);
-  }
+    /**
+     * Gets badges by profil id.
+     *
+     * @param profilId the profil id
+     * @return the badges by profil id
+     */
+    public List<Badge> getBadgesByProfilId(String profilId) {
+        return badgeRepository.findByProfilId(profilId);
+    }
 
-  /**
-   * Gets all badges.
-   *
-   * @return the all badges
-   */
-  public List<Badge> getAllBadges() {
-    return badgeRepository.findAll();
-  }
+    //    public Badge createBadge(Badge badge) {
+    //        return badgeRepository.save(badge);
+    //    }
 
-  /**
-   * Gets badge by id.
-   *
-   * @param id the id
-   * @return the badge by id
-   */
-  public Optional<Badge> getBadgeById(String id) {
-    return badgeRepository.findById(id);
-  }
-
-  /**
-   * Gets badges by profil id.
-   *
-   * @param profilId the profil id
-   * @return the badges by profil id
-   */
-  public List<Badge> getBadgesByProfilId(String profilId) {
-    return badgeRepository.findByProfilId(profilId);
-  }
-
-  //    public Badge createBadge(Badge badge) {
-  //        return badgeRepository.save(badge);
-  //    }
-
-  /**
-   * Delete badge.
-   *
-   * @param id the id
-   */
-  public void deleteBadge(String id) {
-    badgeRepository.deleteById(id);
-  }
+    /**
+     * Delete badge.
+     *
+     * @param id the id
+     */
+    public void deleteBadge(String id) {
+        badgeRepository.deleteById(id);
+    }
 }
