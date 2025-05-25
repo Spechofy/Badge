@@ -28,7 +28,7 @@
     </scm>
     <properties>
         <java.version>21</java.version>
-        <sonar.projectKey>spechofy</sonar.projectKey>
+        <sonar.projectKey>spechofy-badges</sonar.projectKey>
         <sonar.projectName>spechofy</sonar.projectName>
     </properties>
     <dependencies>
