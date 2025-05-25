@@ -115,7 +115,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: >
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=spechofy-badge
-          -Dsonar.projectName=spechofy-badge
+          -Dsonar.projectKey=spechofy-badges
+          -Dsonar.projectName=spechofy-badges
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.token=${{ secrets.SONAR_TOKEN_BADGES }}
