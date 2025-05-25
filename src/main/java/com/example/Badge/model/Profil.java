@@ -1,6 +1,10 @@
 package com.example.Badge.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
