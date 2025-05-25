@@ -17,7 +17,7 @@ public class Badge {
   /**
    * The Badge id.
    */
-  @Id private String badgeId;
+  @Id private  String badgeId;
   /**
    * The Badge name.
    */
@@ -26,7 +26,7 @@ public class Badge {
   /**
    * The Profil id.
    */
-  private String profilId; // référence vers Profil
+  private  String profilId; // référence vers Profil
 
   /**
    * The Rating static.

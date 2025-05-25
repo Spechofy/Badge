@@ -26,11 +26,16 @@ public class RatingStaticKafkaConsumer {
    * @param event the event
    */
   @KafkaListener(topics = Topics.RATING, groupId = "spechofy-group")
-  public void listenRatingStatic(EventKafkaRatingStatic event) {
+  public void listenRatingStatic(final EventKafkaRatingStatic event) {
     Action action = event.getAction();
     RatingStatic rating = event.getData();
     switch (action) {
-      case CREATE -> ratingStaticRepository.save(rating);
+      case CREATE :
+        ratingStaticRepository.save(rating);
+        break;
+      default:
+        // Rien à faire ou log si nécessaire
+        break;
     }
   }
 }

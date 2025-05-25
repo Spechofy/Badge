@@ -25,11 +25,15 @@ public class MusicStatisticKafkaConsumer {
    * @param event the event
    */
   @KafkaListener(topics = "music-stats-topic", groupId = "spechofy-group")
-  public void listenMusicStatistic(EventKafkaMusicStatistic event) {
+  public void listenMusicStatistic(final EventKafkaMusicStatistic event) {
     Action action = event.getAction();
     MusicStatistic musicStatistic = event.getData();
     switch (action) {
-      case CREATE -> musicStatisticRepository.save(musicStatistic);
+      case CREATE:
+        musicStatisticRepository.save(musicStatistic);
+        break;
+      default:
+        break;
     }
   }
 }

@@ -25,7 +25,7 @@ public class ProfilKafkaConsumer {
    * @param eventKafka the event kafka
    */
   @KafkaListener(topics = Topics.PROFILE, groupId = "spechofy-group")
-  public void listenProfil(EventKafkaProfil eventKafka) {
+  public void listenProfil(final EventKafkaProfil eventKafka) {
     Profil profil = (Profil) eventKafka.getData();
     switch (eventKafka.getAction()) {
       case CREATE:
@@ -33,6 +33,8 @@ public class ProfilKafkaConsumer {
         break;
       case DELETE:
         profilRepository.delete(profil);
+        break;
+      default:
         break;
     }
   }

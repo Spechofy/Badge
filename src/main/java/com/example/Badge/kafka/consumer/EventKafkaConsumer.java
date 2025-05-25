@@ -25,7 +25,7 @@ public class EventKafkaConsumer {
    * @param eventKafka the event kafka
    */
   @KafkaListener(topics = Topics.EVENT, groupId = "spechofy-group")
-  public void listenEvent(EventKafkaEvent eventKafka) {
+  public void listenEvent(final EventKafkaEvent eventKafka) {
     Event even = (Event) eventKafka.getData();
     switch (eventKafka.getAction()) {
       case CREATE:
@@ -33,6 +33,8 @@ public class EventKafkaConsumer {
         break;
       case DELETE:
         evenRepository.delete(even);
+        break;
+      default:
         break;
     }
   }

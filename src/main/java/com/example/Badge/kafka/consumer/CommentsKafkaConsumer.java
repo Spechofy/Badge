@@ -26,12 +26,14 @@ public class CommentsKafkaConsumer {
    * @param event the event
    */
   @KafkaListener(topics = Topics.COMMENT, groupId = "spechofy-group")
-  public void consumeComment(EventKafkaCommentsStatic event) {
+  public void consumeComment(final EventKafkaCommentsStatic event) {
     Action action = event.getAction();
     CommentsStatic comment = event.getData();
     switch (action) {
       case CREATE:
         commentsStaticRepository.save(comment);
+        break;
+      default:
         break;
     }
   }

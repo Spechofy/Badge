@@ -2,6 +2,7 @@ package com.example.Badge.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,8 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "events")
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Event {
   /**
    * The Profil id.
