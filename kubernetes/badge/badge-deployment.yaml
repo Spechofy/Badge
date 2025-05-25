@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: badge-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: badge-service
+  template:
+    metadata:
+      labels:
+        app: badge-service
+    spec:
+      containers:
+        - name: badge-service
+          image: koundia/badge-service:latest # remplace avec ton image DockerHub
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "default"
+      imagePullSecrets:
+        - name: regcred

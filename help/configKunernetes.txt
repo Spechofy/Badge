@@ -1,0 +1,37 @@
+Étapes pour tester Kubernetes en local avec Minikube (Linux)
+
+
+
+1. Install kubectl
+sudo apt update
+sudo apt install -y curl
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+2. Install minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+3.  Demarrer minikube
+
+minikube start --driver=docker
+
+4   Verifier que tout fonctionne
+
+kubectl get nodes
+kubectl get pods -A
+
+
+5   Déployer le projet
+
+kubectl apply -f kubernetes/mongodb/
+kubectl apply -f kubernetes/zookeeper/
+kubectl apply -f kubernetes/kafka/
+kubectl apply -f kubernetes/badge/
+
+
+
+minikube service badge-service
