@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF: FinalClass
 package com.example.Badge;
 
 import org.springframework.boot.SpringApplication;
