@@ -6,7 +6,14 @@ import com.example.Badge.service.ProfilService;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 /**
  * The type Profil controller.
@@ -60,7 +67,8 @@ public class ProfilController {
      * @return the profil by user id
      */
     @GetMapping("/user/{userId}")
-    public ResponseEntity<Profil> getProfilByUserId(@PathVariable final String userId) {
+    public ResponseEntity<Profil>
+    getProfilByUserId(@PathVariable final String userId) {
         Profil profil = profilService.getProfilByUserId(userId);
         if (profil != null) {
             return ResponseEntity.ok(profil);
@@ -76,7 +84,8 @@ public class ProfilController {
      * @return the response entity
      */
     @PostMapping
-    public ResponseEntity<String> createProfil(@RequestBody final Profil profil) {
+    public ResponseEntity<String>
+    createProfil(@RequestBody final Profil profil) {
         profilService.createProfil(profil);
         return ResponseEntity.ok("Profil envoyé via Kafka avec succès !");
     }
@@ -92,7 +101,8 @@ public class ProfilController {
         Profil profil = profilService.getProfilByUserId(id);
         if (profil != null) {
             profilService.deleteProfil(id);
-            return ResponseEntity.ok("demande suppression envoyé via Kafka avec succès !");
+            return ResponseEntity.ok(
+                    "demande suppression envoyé via Kafka avec succès !");
         }
 
         return ResponseEntity.noContent().build();

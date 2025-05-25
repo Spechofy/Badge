@@ -47,7 +47,8 @@ public class CommentsStaticService {
      * @return the comments static
      */
     public CommentsStatic saveComment(final CommentsStatic comment) {
-        kafkaTemplate.send(Topics.COMMENT, new EventKafkaCommentsStatic(Action.CREATE, comment));
+        kafkaTemplate.send(Topics.COMMENT,
+                new EventKafkaCommentsStatic(Action.CREATE, comment));
         return comment;
     }
 }

@@ -7,7 +7,7 @@
 
     <!-- Longueur maximale des lignes (doit être au niveau Checker, pas TreeWalker) -->
     <module name="LineLength">
-        <property name="max" value="100"/>
+        <property name="max" value="80"/>
     </module>
 
     <module name="TreeWalker">

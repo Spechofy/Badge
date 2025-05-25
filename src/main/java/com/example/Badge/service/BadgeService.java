@@ -9,6 +9,7 @@ import com.example.Badge.service.assignment.BadgeType;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.Badge.service.assignment.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,12 +64,17 @@ public class BadgeService {
         Profil profil =
                 profilRepository
                         .findById(profilId)
-                        .orElseThrow(() -> new RuntimeException("Profil non trouvé"));
+                        .orElseThrow(() -> new RuntimeException(
+                                "Profil non trouvé"));
         String userId = profil.getUserId();
 
-        List<Badge> badgesExistants = badgeRepository.findByProfilId(profilId);
-        List<CommentsStatic> userComments = commentsStaticService.getCommentsByUserId(userId);
-        List<RatingStatic> positiveRatings = ratingStaticService.getPositiveRatings(3);
+        List<Badge> badgesExistants = badgeRepository
+                .findByProfilId(profilId);
+        List<CommentsStatic> userComments = commentsStaticService
+                .getCommentsByUserId(userId);
+        List<RatingStatic> positiveRatings = ratingStaticService
+                .getPositiveRatings(
+                        (int)Criterion.MIN_POSITIVE_RATINGS.getMin());
         List<MusicStatistic> musicStats = musicStatisticService.getAll();
 
         int nombreParticipations = getNombreParticipations(profilId);

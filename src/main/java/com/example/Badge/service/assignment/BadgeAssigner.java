@@ -29,9 +29,12 @@ public class BadgeAssigner {
      * @param comments the comments
      * @return the boolean
      */
-    public boolean shouldAssignCommentBadge(final List<CommentsStatic> comments) {
+    public boolean
+    shouldAssignCommentBadge(final List<CommentsStatic> comments) {
+        double minRating = MIN_RATE_COMMENTS.getMin();
         long constructiveCount =
-                comments.stream().filter(c -> c.getRate() >= MIN_RATE_COMMENTS.getMin()).count();
+                comments.stream()
+                        .filter(c -> c.getRate() >= minRating ).count();
 
         return constructiveCount >= MIN_CONSTRUCTIVE_COMMENTS.getMin()
                 && !hasBadge(COMMENTAIRES.getDisplayName());
@@ -43,7 +46,8 @@ public class BadgeAssigner {
      * @param ratings the ratings
      * @return the boolean
      */
-    public boolean shouldAssignPositiveRatingsBadge(final List<RatingStatic> ratings) {
+    public boolean shouldAssignPositiveRatingsBadge
+    (final List<RatingStatic> ratings) {
         return ratings.size() >= MIN_POSITIVE_RATINGS.getMin()
                 && !hasBadge(EVALUATIONS_POSITIVES.getDisplayName());
     }
@@ -54,10 +58,12 @@ public class BadgeAssigner {
      * @param stats the stats
      * @return the boolean
      */
-    public boolean shouldAssignMusicCompatibilityBadge(final List<MusicStatistic> stats) {
+    public boolean shouldAssignMusicCompatibilityBadge(
+            final List<MusicStatistic> stats) {
         double average =
                 stats.stream().mapToDouble(
-                        MusicStatistic::getMusicCompatibility).average().orElse(0.0);
+                        MusicStatistic::getMusicCompatibility)
+                        .average().orElse(0.0);
 
         return average >= MIN_MUSIC_COMPATIBILITY.getMin()
                 && !hasBadge(COMPATIBILITE_MUSICALE.getDisplayName());
@@ -69,7 +75,8 @@ public class BadgeAssigner {
      * @param participationCount the participation count
      * @return the boolean
      */
-    public boolean shouldAssignParticipationBadge(final int participationCount) {
+    public boolean
+    shouldAssignParticipationBadge(final int participationCount) {
         return participationCount >= MIN_PARTICIPATION_EVENT.getMin()
                 && !hasBadge(PARTICIPATION.getDisplayName());
     }
@@ -81,6 +88,7 @@ public class BadgeAssigner {
      * @return the boolean
      */
     private boolean hasBadge(final String badgeName) {
-        return existingBadges.stream().anyMatch(b -> b.getBadgeName().equalsIgnoreCase(badgeName));
+        return existingBadges.stream()
+                .anyMatch(b -> b.getBadgeName().equalsIgnoreCase(badgeName));
     }
 }

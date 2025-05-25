@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
  * The interface Profil repository.
  */
 @Repository
-public interface ProfilRepository extends MongoRepository<Profil, String> {
+public interface ProfilRepository extends
+        MongoRepository<Profil, String> {
     /**
      * Find by user id profil.
      *

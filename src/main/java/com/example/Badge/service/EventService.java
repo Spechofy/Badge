@@ -39,7 +39,8 @@ public class EventService {
      * @return the event
      */
     public Event saveEvent(final Event event) {
-        kafkaTemplate.send(Topics.EVENT, new EventKafkaEvent(Action.CREATE, event));
+        kafkaTemplate.send(Topics.EVENT,
+                new EventKafkaEvent(Action.CREATE, event));
         return eventRepository.save(event);
     }
 
