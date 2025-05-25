@@ -3,11 +3,9 @@ package com.example.Badge.kafka;
 /**
  * The type Topics.
  */
-<<<<<<< HEAD
-public class Topics {
-=======
+
 public final  class Topics {
->>>>>>> 431feb1 (Check style code)
+
     private Topics() {
         // Empêche l'instanciation
         throw new UnsupportedOperationException("Utility class");
