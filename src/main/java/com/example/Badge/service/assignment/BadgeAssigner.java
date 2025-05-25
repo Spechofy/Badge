@@ -34,7 +34,7 @@ public class BadgeAssigner {
         double minRating = MIN_RATE_COMMENTS.getMin();
         long constructiveCount =
                 comments.stream()
-                        .filter(c -> c.getRate() >= minRating ).count();
+                        .filter(c -> c.getRate() >= minRating).count();
 
         return constructiveCount >= MIN_CONSTRUCTIVE_COMMENTS.getMin()
                 && !hasBadge(COMMENTAIRES.getDisplayName());
@@ -46,8 +46,8 @@ public class BadgeAssigner {
      * @param ratings the ratings
      * @return the boolean
      */
-    public boolean shouldAssignPositiveRatingsBadge
-    (final List<RatingStatic> ratings) {
+    public boolean shouldAssignPositiveRatingsBadge(
+            final List<RatingStatic> ratings) {
         return ratings.size() >= MIN_POSITIVE_RATINGS.getMin()
                 && !hasBadge(EVALUATIONS_POSITIVES.getDisplayName());
     }

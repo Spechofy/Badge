@@ -48,7 +48,8 @@ public class RatingStaticService {
      */
     public RatingStatic saveRating(final RatingStatic rating) {
 
-        kafkaTemplate.send(Topics.RATING, new EventKafkaRatingStatic(Action.CREATE, rating));
+        kafkaTemplate.send(Topics.RATING,
+                new EventKafkaRatingStatic(Action.CREATE, rating));
         return rating;
     }
 }

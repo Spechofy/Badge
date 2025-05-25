@@ -5,6 +5,7 @@ import com.example.Badge.service.CommentsStaticService;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @RestController
 @RequestMapping("/comments")
+@RequiredArgsConstructor
 public class CommentsStaticController {
 
     /**
@@ -25,15 +27,7 @@ public class CommentsStaticController {
      */
     private final CommentsStaticService commentsStaticService;
 
-    /**
-     * Instantiates a new Comments static controller.
-     *
-     * @param commentsStaticService the comments static service
-     */
-    public CommentsStaticController
-    (final CommentsStaticService commentsStaticService) {
-        this.commentsStaticService = commentsStaticService;
-    }
+
 
     /**
      * Gets comments by user.

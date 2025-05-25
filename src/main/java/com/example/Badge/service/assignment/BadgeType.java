@@ -1,12 +1,14 @@
 package com.example.Badge.service.assignment;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 
 /**
  * The enum Badge type.
  */
 @Getter
+@RequiredArgsConstructor
 public enum BadgeType {
 
     /**
@@ -29,16 +31,16 @@ public enum BadgeType {
      */
     COMPATIBILITE_MUSICALE(
             "Badge Compatibilité Musicale",
-            "Récompense une forte " +
-                    "compatibilité musicale avec les autres membres."),
+            "Récompense une forte "
+                    + "compatibilité musicale avec les autres membres."),
 
     /**
      * Badge attribué en fonction de la participation à des événements musicaux.
      */
     PARTICIPATION(
             "Badge Participation",
-            "Récompense l’implication " +
-                    "dans les événements musicaux de la plateforme.");
+            "Récompense l’implication "
+                    + "dans les événements musicaux de la plateforme.");
 
     /**
      * The Display name.
@@ -49,15 +51,6 @@ public enum BadgeType {
      */
     private final String description;
 
-    /**
-     * Instantiates a new Badge type.
-     *
-     * @param displayName the display name
-     * @param description the description
-     */
-    BadgeType(final String displayName, final String description) {
-        this.displayName = displayName;
-        this.description = description;
-    }
+
 
 }
