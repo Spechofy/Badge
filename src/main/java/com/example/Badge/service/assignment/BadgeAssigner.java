@@ -25,7 +25,7 @@ public class BadgeAssigner {
     }
 
     public boolean shouldAssignPositiveRatingsBadge(List<RatingStatic> ratings) {
-        return ratings.size() >= MIN_POSITIVE_RATINGS.getMin() && !hasBadge(COMMENTAIRES.getDisplayName());
+        return ratings.size() >= MIN_POSITIVE_RATINGS.getMin() && !hasBadge(EVALUATIONS_POSITIVES.getDisplayName());
     }
 
     public boolean shouldAssignMusicCompatibilityBadge(List<MusicStatistic> stats) {
