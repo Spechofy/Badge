@@ -6,11 +6,16 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Profil controller. */
+/**
+ * The type Profil controller.
+ */
 @RestController
 @RequestMapping("/api/profils")
 public class ProfilController {
 
+  /**
+   * The Profil service.
+   */
   private final ProfilService profilService;
 
   /**

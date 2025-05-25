@@ -5,11 +5,16 @@ import com.example.Badge.service.RatingStaticService;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Rating static controller. */
+/**
+ * The type Rating static controller.
+ */
 @RestController
 @RequestMapping("/ratings")
 public class RatingStaticController {
 
+  /**
+   * The Rating static service.
+   */
   private final RatingStaticService ratingStaticService;
 
   /**

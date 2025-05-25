@@ -4,7 +4,9 @@ import com.example.Badge.model.Event;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-/** The interface Event repository. */
+/**
+ * The interface Event repository.
+ */
 public interface EventRepository extends MongoRepository<Event, String> {
   /**
    * Find by profil id list.

@@ -5,11 +5,16 @@ import com.example.Badge.service.CommentsStaticService;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Comments static controller. */
+/**
+ * The type Comments static controller.
+ */
 @RestController
 @RequestMapping("/comments")
 public class CommentsStaticController {
 
+  /**
+   * The Comments static service.
+   */
   private final CommentsStaticService commentsStaticService;
 
   /**

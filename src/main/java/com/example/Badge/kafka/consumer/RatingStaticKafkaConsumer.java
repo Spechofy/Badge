@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/** The type Rating static kafka consumer. */
+/**
+ * The type Rating static kafka consumer.
+ */
 @Service
 public class RatingStaticKafkaConsumer {
 
+  /**
+   * The Rating static repository.
+   */
   @Autowired private RatingStaticRepository ratingStaticRepository;
 
   /**

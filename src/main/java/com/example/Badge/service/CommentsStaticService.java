@@ -10,12 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-/** The type Comments static service. */
+/**
+ * The type Comments static service.
+ */
 @Service
 public class CommentsStaticService {
 
+  /**
+   * The Comments static repository.
+   */
   @Autowired private CommentsStaticRepository commentsStaticRepository;
 
+  /**
+   * The Kafka template.
+   */
   @Autowired private KafkaTemplate<String, EventKafkaCommentsStatic> kafkaTemplate;
 
   /**

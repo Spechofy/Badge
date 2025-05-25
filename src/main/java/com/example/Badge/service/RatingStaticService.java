@@ -10,12 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-/** The type Rating static service. */
+/**
+ * The type Rating static service.
+ */
 @Service
 public class RatingStaticService {
 
+  /**
+   * The Rating static repository.
+   */
   @Autowired private RatingStaticRepository ratingStaticRepository;
 
+  /**
+   * The Kafka template.
+   */
   @Autowired private KafkaTemplate<String, EventKafkaRatingStatic> kafkaTemplate;
 
   /**

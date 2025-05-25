@@ -6,12 +6,17 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Event controller. */
+/**
+ * The type Event controller.
+ */
 @RestController
 @RequestMapping("/api/events")
 @RequiredArgsConstructor
 public class EventController {
 
+  /**
+   * The Event service.
+   */
   private final EventService eventService;
 
   /**

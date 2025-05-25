@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Badge controller. */
+/**
+ * The type Badge controller.
+ */
 @RestController
 @RequestMapping("/api/badges")
 public class BadgeController {
 
+  /**
+   * The Badge service.
+   */
   @Autowired private BadgeService badgeService;
 
   /**

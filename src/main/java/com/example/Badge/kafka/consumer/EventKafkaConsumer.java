@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/** The type Event kafka consumer. */
+/**
+ * The type Event kafka consumer.
+ */
 @Service
 public class EventKafkaConsumer {
 
+  /**
+   * The Even repository.
+   */
   @Autowired private EventRepository evenRepository;
 
   /**

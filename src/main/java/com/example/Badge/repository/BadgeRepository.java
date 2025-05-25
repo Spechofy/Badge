@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-/** The interface Badge repository. */
+/**
+ * The interface Badge repository.
+ */
 @Repository
 public interface BadgeRepository extends MongoRepository<Badge, String> {
   /**
@@ -14,6 +16,6 @@ public interface BadgeRepository extends MongoRepository<Badge, String> {
    * @param profilId the profil id
    * @return the list
    */
-  // Rechercher les badges par profilId
+// Rechercher les badges par profilId
   List<Badge> findByProfilId(String profilId);
 }

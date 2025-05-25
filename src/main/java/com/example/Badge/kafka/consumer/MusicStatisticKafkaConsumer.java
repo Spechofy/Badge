@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/** The type Music statistic kafka consumer. */
+/**
+ * The type Music statistic kafka consumer.
+ */
 @Service
 public class MusicStatisticKafkaConsumer {
 
+  /**
+   * The Music statistic repository.
+   */
   @Autowired private MusicStatisticRepository musicStatisticRepository;
 
   /**

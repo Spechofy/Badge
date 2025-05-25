@@ -4,7 +4,9 @@ import com.example.Badge.model.RatingStatic;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-/** The interface Rating static repository. */
+/**
+ * The interface Rating static repository.
+ */
 public interface RatingStaticRepository extends MongoRepository<RatingStatic, String> {
   /**
    * Find by rate greater than list.

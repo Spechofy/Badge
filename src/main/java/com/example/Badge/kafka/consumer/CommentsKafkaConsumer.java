@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/** The type Comments kafka consumer. */
+/**
+ * The type Comments kafka consumer.
+ */
 @Service
 public class CommentsKafkaConsumer {
 
+  /**
+   * The Comments static repository.
+   */
   @Autowired private CommentsStaticRepository commentsStaticRepository;
 
   /**

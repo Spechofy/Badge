@@ -11,12 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-/** The type Profil service. */
+/**
+ * The type Profil service.
+ */
 @Service
 public class ProfilService {
 
+  /**
+   * The Profil repository.
+   */
   @Autowired private ProfilRepository profilRepository;
 
+  /**
+   * The Kafka template.
+   */
   @Autowired private KafkaTemplate<String, EventKafkaProfil> kafkaTemplate;
 
   /**

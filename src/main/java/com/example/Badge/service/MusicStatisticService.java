@@ -10,11 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-/** The type Music statistic service. */
+/**
+ * The type Music statistic service.
+ */
 @Service
 public class MusicStatisticService {
 
+  /**
+   * The Music statistic repository.
+   */
   @Autowired private MusicStatisticRepository musicStatisticRepository;
+  /**
+   * The Kafka template.
+   */
   @Autowired private KafkaTemplate<String, EventKafkaMusicStatistic> kafkaTemplate;
 
   /**

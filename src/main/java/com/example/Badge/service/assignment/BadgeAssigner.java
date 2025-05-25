@@ -10,10 +10,15 @@ import com.example.Badge.model.RatingStatic;
 import java.util.List;
 import lombok.AllArgsConstructor;
 
-/** The type Badge assigner. */
+/**
+ * The type Badge assigner.
+ */
 @AllArgsConstructor
 public class BadgeAssigner {
 
+  /**
+   * The Existing badges.
+   */
   private final List<Badge> existingBadges;
 
   /**
@@ -66,6 +71,12 @@ public class BadgeAssigner {
         && !hasBadge(PARTICIPATION.getDisplayName());
   }
 
+  /**
+   * Has badge boolean.
+   *
+   * @param badgeName the badge name
+   * @return the boolean
+   */
   private boolean hasBadge(String badgeName) {
     return existingBadges.stream().anyMatch(b -> b.getBadgeName().equalsIgnoreCase(badgeName));
   }

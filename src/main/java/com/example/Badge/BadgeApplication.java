@@ -3,7 +3,9 @@ package com.example.Badge;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/** The type Badge application. */
+/**
+ * The type Badge application.
+ */
 @SpringBootApplication
 public class BadgeApplication {
 

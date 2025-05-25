@@ -4,13 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/** The type Music statistic. */
+/**
+ * The type Music statistic.
+ */
 @Document
 @Getter
 @Setter
 public class MusicStatistic {
+  /**
+   * The Music compatibility.
+   */
   private double musicCompatibility;
+  /**
+   * The Artist compatibility.
+   */
   private double artistCompatibility;
+  /**
+   * The Style compatibility.
+   */
   private double styleCompatibility;
 
   /**

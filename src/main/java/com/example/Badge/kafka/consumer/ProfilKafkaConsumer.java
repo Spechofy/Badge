@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/** The type Profil kafka consumer. */
+/**
+ * The type Profil kafka consumer.
+ */
 @Service
 public class ProfilKafkaConsumer {
 
+  /**
+   * The Profil repository.
+   */
   @Autowired private ProfilRepository profilRepository;
 
   /**

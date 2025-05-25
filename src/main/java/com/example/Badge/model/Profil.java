@@ -6,15 +6,26 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/** The type Profil. */
+/**
+ * The type Profil.
+ */
 @Document(collection = "profils")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Profil {
 
+  /**
+   * The Profil id.
+   */
   @Id private String profilId;
+  /**
+   * The Description.
+   */
   private String description;
+  /**
+   * The User id.
+   */
   private String userId;
 
   /**

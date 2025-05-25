@@ -5,11 +5,16 @@ import com.example.Badge.service.MusicStatisticService;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/** The type Music statistic controller. */
+/**
+ * The type Music statistic controller.
+ */
 @RestController
 @RequestMapping("/music-stats")
 public class MusicStatisticController {
 
+  /**
+   * The Music statistic service.
+   */
   private final MusicStatisticService musicStatisticService;
 
   /**

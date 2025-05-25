@@ -2,11 +2,22 @@ package com.example.Badge.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/** The type Rating static. */
+/**
+ * The type Rating static.
+ */
 @Document
 public class RatingStatic {
+  /**
+   * The Rating id.
+   */
   private String ratingId;
+  /**
+   * The Comment.
+   */
   private String comment;
+  /**
+   * The Rate.
+   */
   private int rate;
 
   /**

@@ -10,20 +10,40 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/** The type Badge service. */
+/**
+ * The type Badge service.
+ */
 @Service
 public class BadgeService {
 
+  /**
+   * The Badge repository.
+   */
   @Autowired private BadgeRepository badgeRepository;
 
+  /**
+   * The Profil repository.
+   */
   @Autowired private ProfilRepository profilRepository;
 
+  /**
+   * The Comments static service.
+   */
   @Autowired private CommentsStaticService commentsStaticService;
 
+  /**
+   * The Rating static service.
+   */
   @Autowired private RatingStaticService ratingStaticService;
 
+  /**
+   * The Music statistic service.
+   */
   @Autowired private MusicStatisticService musicStatisticService;
 
+  /**
+   * The Event service.
+   */
   @Autowired private EventService eventService;
 
   /**
@@ -64,6 +84,12 @@ public class BadgeService {
     }
   }
 
+  /**
+   * Save badge.
+   *
+   * @param profilId  the profil id
+   * @param badgeType the badge type
+   */
   private void saveBadge(String profilId, BadgeType badgeType) {
     Badge badge = new Badge();
     badge.setProfilId(profilId);
@@ -71,6 +97,12 @@ public class BadgeService {
     badgeRepository.save(badge);
   }
 
+  /**
+   * Gets nombre participations.
+   *
+   * @param profilId the profil id
+   * @return the nombre participations
+   */
   private int getNombreParticipations(String profilId) {
     return eventService.countEventsByProfilId(profilId);
   }

@@ -11,13 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-/** The type Event service. */
+/**
+ * The type Event service.
+ */
 @Service
 @RequiredArgsConstructor
 public class EventService {
 
+  /**
+   * The Event repository.
+   */
   @Autowired private EventRepository eventRepository;
 
+  /**
+   * The Kafka template.
+   */
   @Autowired private KafkaTemplate<String, EventKafkaEvent> kafkaTemplate;
 
   /**
