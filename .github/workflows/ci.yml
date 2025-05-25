@@ -1,4 +1,4 @@
-name: CI - Gestion des utilisateurs et profiles (Develop & Feature)
+name: CI - Gestion des Badges
 
 on:
   push:
@@ -18,11 +18,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
           cache: maven
 
       - name: Run Maven lint (Checkstyle)
@@ -34,16 +34,16 @@ jobs:
     needs: lint
 
     services:
-      postgres-spring:
-        image: postgres:16
+      mongodb:
+        image: mongo:latest
         env:
-          POSTGRES_DB: dbGestionDesUtilisateurs
-          POSTGRES_USER: springuser
-          POSTGRES_PASSWORD: springpass
+          MONGO_INITDB_ROOT_USERNAME: mongo
+          MONGO_INITDB_ROOT_PASSWORD: root
+          MONGO_INITDB_DATABASE: db_badge
         ports:
-          - 5432:5432
+          - 27017:27017
         options: >-
-          --health-cmd "pg_isready -U springuser"
+          --health-cmd "echo 'db.runCommand({ ping: 1 })' | mongosh --quiet --username mongo --password root --authenticationDatabase admin localhost:27017/db_badge"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -52,21 +52,30 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
           cache: maven
 
-      - name: Wait for Postgres to be ready
+      - name: Wait for MongoDB to be ready
         run: |
-          echo "Waiting for Postgres Spring..."
-          until pg_isready -h localhost -p 5432 -U springuser; do sleep 5; done
+          echo "Waiting for MongoDB..."
+          for i in {1..10}; do
+            if echo 'db.runCommand({ ping: 1 })' | mongosh --quiet --username mongo --password root --authenticationDatabase admin localhost:27017/db_badge; then
+              echo "MongoDB is ready"
+              break
+            fi
+            sleep 5
+          done
 
       - name: Run Maven tests
         env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/dbGestionDesUtilisateurs
-          SPRING_DATASOURCE_USERNAME: springuser
-          SPRING_DATASOURCE_PASSWORD: springpass
+          SPRING_DATA_MONGODB_HOST: localhost
+          SPRING_DATA_MONGODB_PORT: 27017
+          SPRING_DATA_MONGODB_DATABASE: db_badge
+          SPRING_DATA_MONGODB_USERNAME: mongo
+          SPRING_DATA_MONGODB_PASSWORD: root
+          SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
         run: mvn test
