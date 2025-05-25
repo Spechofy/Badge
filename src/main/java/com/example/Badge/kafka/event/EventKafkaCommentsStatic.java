@@ -4,6 +4,9 @@ import com.example.Badge.model.CommentsStatic;
 import lombok.*;
 
 
+/**
+ * The type Event kafka comments static.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

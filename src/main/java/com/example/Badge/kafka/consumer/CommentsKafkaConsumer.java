@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Comments kafka consumer.
+ */
 @Service
 public class CommentsKafkaConsumer {
 
@@ -16,6 +19,11 @@ public class CommentsKafkaConsumer {
     private CommentsStaticRepository commentsStaticRepository;
 
 
+    /**
+     * Consume comment.
+     *
+     * @param event the event
+     */
     @KafkaListener(topics = Topics.COMMENT, groupId = "spechofy-group")
     public void consumeComment(EventKafkaCommentsStatic event) {
         Action action = event.getAction();

@@ -9,6 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+/**
+ * The type Badge.
+ */
 @Document(collection = "badges")
 @Getter
 @Setter

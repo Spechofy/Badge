@@ -10,6 +10,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * The type Rating static service.
+ */
 @Service
 public class RatingStaticService {
 
@@ -19,10 +22,22 @@ public class RatingStaticService {
     @Autowired
     private KafkaTemplate<String, EventKafkaRatingStatic > kafkaTemplate;
 
+    /**
+     * Gets positive ratings.
+     *
+     * @param minRate the min rate
+     * @return the positive ratings
+     */
     public List<RatingStatic> getPositiveRatings(int minRate) {
         return ratingStaticRepository.findByRateGreaterThan(minRate);
     }
 
+    /**
+     * Save rating rating static.
+     *
+     * @param rating the rating
+     * @return the rating static
+     */
     public RatingStatic saveRating(RatingStatic rating) {
 
         kafkaTemplate.send(Topics.RATING, new EventKafkaRatingStatic(Action.CREATE, rating));

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Profil service.
+ */
 @Service
 public class ProfilService {
 
@@ -21,18 +24,41 @@ public class ProfilService {
     private KafkaTemplate<String, EventKafkaProfil> kafkaTemplate;
 
 
+    /**
+     * Gets all profils.
+     *
+     * @return the all profils
+     */
     public List<Profil> getAllProfils() {
         return profilRepository.findAll();
     }
 
+    /**
+     * Gets profil by id.
+     *
+     * @param id the id
+     * @return the profil by id
+     */
     public Optional<Profil> getProfilById(String id) {
         return profilRepository.findById(id);
     }
 
+    /**
+     * Gets profil by user id.
+     *
+     * @param userId the user id
+     * @return the profil by user id
+     */
     public Profil getProfilByUserId(String userId) {
         return profilRepository.findByUserId(userId);
     }
 
+    /**
+     * Create profil profil.
+     *
+     * @param profil the profil
+     * @return the profil
+     */
     public Profil createProfil(Profil profil) {
         EventKafkaProfil event = new EventKafkaProfil(Action.CREATE, profil);
         kafkaTemplate.send(Topics.PROFILE, event);
@@ -40,6 +66,11 @@ public class ProfilService {
     }
 
 
+    /**
+     * Delete profil.
+     *
+     * @param id the id
+     */
     public void deleteProfil(String id) {
         profilRepository.deleteById(id);
     }

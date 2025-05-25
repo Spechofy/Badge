@@ -10,6 +10,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * The type Comments static service.
+ */
 @Service
 public class CommentsStaticService {
 
@@ -20,10 +23,22 @@ public class CommentsStaticService {
     private KafkaTemplate<String, EventKafkaCommentsStatic> kafkaTemplate;
 
 
+    /**
+     * Gets comments by user id.
+     *
+     * @param userId the user id
+     * @return the comments by user id
+     */
     public List<CommentsStatic> getCommentsByUserId(String userId) {
         return commentsStaticRepository.findByUserId(userId);
     }
 
+    /**
+     * Save comment comments static.
+     *
+     * @param comment the comment
+     * @return the comments static
+     */
     public CommentsStatic saveComment(CommentsStatic comment) {
         kafkaTemplate.send(Topics.COMMENT,new EventKafkaCommentsStatic(Action.CREATE, comment));
         return comment;

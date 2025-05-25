@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Badge service.
+ */
 @Service
 public class BadgeService {
 
@@ -32,6 +35,11 @@ public class BadgeService {
     @Autowired
     private EventService eventService;
 
+    /**
+     * Assign badges to profil.
+     *
+     * @param profilId the profil id
+     */
     public void assignBadgesToProfil(String profilId) {
         Profil profil = profilRepository.findById(profilId)
                 .orElseThrow(() -> new RuntimeException("Profil non trouvé"));
@@ -75,16 +83,33 @@ public class BadgeService {
     }
 
 
+    /**
+     * Gets all badges.
+     *
+     * @return the all badges
+     */
     public List<Badge> getAllBadges() {
         return badgeRepository.findAll();
     }
 
 
+    /**
+     * Gets badge by id.
+     *
+     * @param id the id
+     * @return the badge by id
+     */
     public Optional<Badge> getBadgeById(String id) {
         return badgeRepository.findById(id);
     }
 
 
+    /**
+     * Gets badges by profil id.
+     *
+     * @param profilId the profil id
+     * @return the badges by profil id
+     */
     public List<Badge> getBadgesByProfilId(String profilId) {
         return badgeRepository.findByProfilId(profilId);
     }
@@ -94,6 +119,11 @@ public class BadgeService {
 //        return badgeRepository.save(badge);
 //    }
 
+    /**
+     * Delete badge.
+     *
+     * @param id the id
+     */
     public void deleteBadge(String id) {
         badgeRepository.deleteById(id);
     }

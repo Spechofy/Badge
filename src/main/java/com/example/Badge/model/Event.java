@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * The type Event.
+ */
 @Document(collection = "events")
 @Builder
 @NoArgsConstructor

@@ -10,6 +10,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * The type Music statistic service.
+ */
 @Service
 public class MusicStatisticService {
 
@@ -18,10 +21,21 @@ public class MusicStatisticService {
     @Autowired
     private KafkaTemplate<String, EventKafkaMusicStatistic> kafkaTemplate;
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     public List<MusicStatistic> getAll() {
         return musicStatisticRepository.findAll();
     }
 
+    /**
+     * Save music statistic.
+     *
+     * @param musicStatistic the music statistic
+     * @return the music statistic
+     */
     public MusicStatistic save(MusicStatistic musicStatistic) {
         kafkaTemplate.send(Topics.MUSIC, new EventKafkaMusicStatistic(Action.CREATE,musicStatistic));
         return musicStatistic;

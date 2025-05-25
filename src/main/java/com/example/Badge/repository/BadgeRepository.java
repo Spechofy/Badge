@@ -6,9 +6,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * The interface Badge repository.
+ */
 @Repository
 public interface BadgeRepository extends MongoRepository<Badge, String> {
-    // Rechercher les badges par profilId
+    /**
+     * Find by profil id list.
+     *
+     * @param profilId the profil id
+     * @return the list
+     */
+// Rechercher les badges par profilId
     List<Badge> findByProfilId(String profilId);
 }
 

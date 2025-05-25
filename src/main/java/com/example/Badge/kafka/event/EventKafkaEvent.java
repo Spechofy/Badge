@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * The type Event kafka event.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

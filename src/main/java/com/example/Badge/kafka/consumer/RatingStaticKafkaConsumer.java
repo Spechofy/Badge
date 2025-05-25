@@ -10,12 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Rating static kafka consumer.
+ */
 @Service
 public class RatingStaticKafkaConsumer {
 
     @Autowired
     private RatingStaticRepository ratingStaticRepository;
 
+    /**
+     * Listen rating static.
+     *
+     * @param event the event
+     */
     @KafkaListener(topics = Topics.RATING, groupId = "spechofy-group")
     public void listenRatingStatic(EventKafkaRatingStatic event) {
         Action action = event.getAction();

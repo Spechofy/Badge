@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Event service.
+ */
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -22,19 +25,42 @@ public class EventService {
     @Autowired
     private KafkaTemplate<String, EventKafkaEvent> kafkaTemplate;
 
+    /**
+     * Save event event.
+     *
+     * @param event the event
+     * @return the event
+     */
     public Event saveEvent(Event event) {
         kafkaTemplate.send(Topics.EVENT, new EventKafkaEvent(Action.CREATE,event));
         return eventRepository.save(event);
     }
 
+    /**
+     * Gets events by profil id.
+     *
+     * @param profilId the profil id
+     * @return the events by profil id
+     */
     public List<Event> getEventsByProfilId(String profilId) {
         return eventRepository.findByProfilId(profilId);
     }
 
+    /**
+     * Gets all events.
+     *
+     * @return the all events
+     */
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
 
+    /**
+     * Count events by profil id int.
+     *
+     * @param profilId the profil id
+     * @return the int
+     */
     public int countEventsByProfilId(String profilId) {
         return getEventsByProfilId(profilId).size();
     }

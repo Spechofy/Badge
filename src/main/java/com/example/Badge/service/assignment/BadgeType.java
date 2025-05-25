@@ -1,7 +1,9 @@
 package com.example.Badge.service.assignment;
 
 
-
+/**
+ * The enum Badge type.
+ */
 public enum BadgeType {
 
     /**
@@ -37,10 +39,20 @@ public enum BadgeType {
         this.description = description;
     }
 
+    /**
+     * Gets display name.
+     *
+     * @return the display name
+     */
     public String getDisplayName() {
         return displayName;
     }
 
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
