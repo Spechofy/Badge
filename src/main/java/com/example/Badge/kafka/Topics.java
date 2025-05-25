@@ -4,6 +4,10 @@ package com.example.Badge.kafka;
  * The type Topics.
  */
 public class Topics {
+    private Topics() {
+        // Empêche l'instanciation
+        throw new UnsupportedOperationException("Utility class");
+    }
 
     /**
      * The constant PROFILE.

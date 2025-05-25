@@ -29,18 +29,16 @@ public enum Criterion {
     MIN_RATE_COMMENTS(3.5);
 
     /**
-     * The Min.
+     * The minimum value required for the criterion.
      */
     private final double min;
 
     /**
      * Instantiates a new Criterion.
      *
-     * @param min the min
+     * @param minValue the minimum value
      */
-    Criterion(final double min) {
-        this.min = min;
+    Criterion(final double minValue) {
+        this.min = minValue;
     }
-
-
 }

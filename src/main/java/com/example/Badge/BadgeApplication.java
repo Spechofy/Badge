@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class BadgeApplication {
+    private BadgeApplication() {
+        throw new UnsupportedOperationException(
+                "This is a utility class and cannot be instantiated");
+    }
 
     /**
      * The entry point of application.

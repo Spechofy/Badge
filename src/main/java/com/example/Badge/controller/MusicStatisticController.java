@@ -6,6 +6,7 @@ import com.example.Badge.service.MusicStatisticService;
 import java.util.List;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @RestController
 @RequestMapping("/music-stats")
+@RequiredArgsConstructor
 public class MusicStatisticController {
 
     /**
@@ -26,15 +28,6 @@ public class MusicStatisticController {
      */
     private final MusicStatisticService musicStatisticService;
 
-    /**
-     * Instantiates a new Music statistic controller.
-     *
-     * @param musicStatisticService the music statistic service
-     */
-    public MusicStatisticController(
-            final MusicStatisticService musicStatisticService) {
-        this.musicStatisticService = musicStatisticService;
-    }
 
     /**
      * Gets all.
