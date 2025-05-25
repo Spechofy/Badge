@@ -1,22 +1,19 @@
 package com.example.Badge.dto;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-/**
- * The type Comments static dto.
- */
+/** The type Comments static dto. */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentsStaticDto {
-    private String commentsId;
-    private String content;
-    private LocalDateTime datePosted;
-    private int rate;
-    private String userId;
-    private String playlistId;
+  private String commentsId;
+  private String content;
+  private LocalDateTime datePosted;
+  private int rate;
+  private String userId;
+  private String playlistId;
 }

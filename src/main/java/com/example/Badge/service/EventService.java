@@ -5,64 +5,58 @@ import com.example.Badge.kafka.event.Action;
 import com.example.Badge.kafka.event.EventKafkaEvent;
 import com.example.Badge.model.Event;
 import com.example.Badge.repository.EventRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-/**
- * The type Event service.
- */
+/** The type Event service. */
 @Service
 @RequiredArgsConstructor
 public class EventService {
 
-    @Autowired
-    private EventRepository eventRepository;
+  @Autowired private EventRepository eventRepository;
 
-    @Autowired
-    private KafkaTemplate<String, EventKafkaEvent> kafkaTemplate;
+  @Autowired private KafkaTemplate<String, EventKafkaEvent> kafkaTemplate;
 
-    /**
-     * Save event event.
-     *
-     * @param event the event
-     * @return the event
-     */
-    public Event saveEvent(Event event) {
-        kafkaTemplate.send(Topics.EVENT, new EventKafkaEvent(Action.CREATE,event));
-        return eventRepository.save(event);
-    }
+  /**
+   * Save event event.
+   *
+   * @param event the event
+   * @return the event
+   */
+  public Event saveEvent(Event event) {
+    kafkaTemplate.send(Topics.EVENT, new EventKafkaEvent(Action.CREATE, event));
+    return eventRepository.save(event);
+  }
 
-    /**
-     * Gets events by profil id.
-     *
-     * @param profilId the profil id
-     * @return the events by profil id
-     */
-    public List<Event> getEventsByProfilId(String profilId) {
-        return eventRepository.findByProfilId(profilId);
-    }
+  /**
+   * Gets events by profil id.
+   *
+   * @param profilId the profil id
+   * @return the events by profil id
+   */
+  public List<Event> getEventsByProfilId(String profilId) {
+    return eventRepository.findByProfilId(profilId);
+  }
 
-    /**
-     * Gets all events.
-     *
-     * @return the all events
-     */
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
-    }
+  /**
+   * Gets all events.
+   *
+   * @return the all events
+   */
+  public List<Event> getAllEvents() {
+    return eventRepository.findAll();
+  }
 
-    /**
-     * Count events by profil id int.
-     *
-     * @param profilId the profil id
-     * @return the int
-     */
-    public int countEventsByProfilId(String profilId) {
-        return getEventsByProfilId(profilId).size();
-    }
+  /**
+   * Count events by profil id int.
+   *
+   * @param profilId the profil id
+   * @return the int
+   */
+  public int countEventsByProfilId(String profilId) {
+    return getEventsByProfilId(profilId).size();
+  }
 }
-
