@@ -79,7 +79,7 @@ public class BadgeService {
                 .getCommentsByUserId(userId);
         List<RatingStatic> positiveRatings = ratingStaticService
                 .getPositiveRatings(
-                        (int)Criterion.MIN_POSITIVE_RATINGS.getMin());
+                        (int) Criterion.MIN_POSITIVE_RATINGS.getMin());
         List<MusicStatistic> musicStats = musicStatisticService.getAll();
 
         int nombreParticipations = getNombreParticipations(profilId);
