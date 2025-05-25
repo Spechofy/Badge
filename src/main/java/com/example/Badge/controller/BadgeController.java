@@ -62,7 +62,7 @@ public class BadgeController {
         return badgeService.getBadgesByProfilId(profilId);
     }
 
-    /**
+    /********
      * Delete badge response entity.
      *
      * @param id the id
