@@ -1,7 +1,9 @@
 package com.example.Badge.kafka.event;
 
 import com.example.Badge.model.RatingStatic;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Event kafka rating static.

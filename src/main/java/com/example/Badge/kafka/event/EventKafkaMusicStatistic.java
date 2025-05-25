@@ -1,7 +1,9 @@
 package com.example.Badge.kafka.event;
 
 import com.example.Badge.model.MusicStatistic;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Event kafka music statistic.

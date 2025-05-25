@@ -9,7 +9,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * The interface Comments static repository.
  */
-public interface CommentsStaticRepository extends MongoRepository<CommentsStatic, String> {
+public interface CommentsStaticRepository extends
+        MongoRepository<CommentsStatic, String> {
     /**
      * Find by user id list.
      *
