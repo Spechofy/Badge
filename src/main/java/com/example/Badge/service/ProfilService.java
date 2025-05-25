@@ -46,7 +46,7 @@ public class ProfilService {
      * @param id the id
      * @return the profil by id
      */
-    public Optional<Profil> getProfilById(String id) {
+    public Optional<Profil> getProfilById(final String id) {
         return profilRepository.findById(id);
     }
 
@@ -56,7 +56,7 @@ public class ProfilService {
      * @param userId the user id
      * @return the profil by user id
      */
-    public Profil getProfilByUserId(String userId) {
+    public Profil getProfilByUserId(final String userId) {
         return profilRepository.findByUserId(userId);
     }
 
@@ -66,7 +66,7 @@ public class ProfilService {
      * @param profil the profil
      * @return the profil
      */
-    public Profil createProfil(Profil profil) {
+    public Profil createProfil(final Profil profil) {
         EventKafkaProfil event = new EventKafkaProfil(Action.CREATE, profil);
         kafkaTemplate.send(Topics.PROFILE, event);
         return profil;
@@ -77,7 +77,7 @@ public class ProfilService {
      *
      * @param id the id
      */
-    public void deleteProfil(String id) {
+    public void deleteProfil(final String id) {
         profilRepository.deleteById(id);
     }
 }

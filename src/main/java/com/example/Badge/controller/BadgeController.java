@@ -39,7 +39,7 @@ public class BadgeController {
      * @return the badge by id
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Badge> getBadgeById(@PathVariable String id) {
+    public ResponseEntity<Badge> getBadgeById(@PathVariable final String id) {
         return badgeService
                 .getBadgeById(id)
                 .map(ResponseEntity::ok)
@@ -53,7 +53,7 @@ public class BadgeController {
      * @return the badges by profil id
      */
     @GetMapping("/profil/{profilId}")
-    public List<Badge> getBadgesByProfilId(@PathVariable String profilId) {
+    public List<Badge> getBadgesByProfilId(@PathVariable final String profilId) {
         return badgeService.getBadgesByProfilId(profilId);
     }
 
@@ -64,7 +64,7 @@ public class BadgeController {
      * @return the response entity
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBadge(@PathVariable String id) {
+    public ResponseEntity<Void> deleteBadge(@PathVariable final String id) {
         badgeService.deleteBadge(id);
         return ResponseEntity.noContent().build();
     }

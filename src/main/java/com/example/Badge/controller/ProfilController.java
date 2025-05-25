@@ -25,7 +25,7 @@ public class ProfilController {
      *
      * @param profilService the profil service
      */
-    public ProfilController(ProfilService profilService) {
+    public ProfilController(final ProfilService profilService) {
         this.profilService = profilService;
     }
 
@@ -46,7 +46,7 @@ public class ProfilController {
      * @return the profil by id
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Profil> getProfilById(@PathVariable String id) {
+    public ResponseEntity<Profil> getProfilById(@PathVariable final String id) {
         return profilService
                 .getProfilById(id)
                 .map(ResponseEntity::ok)
@@ -60,7 +60,7 @@ public class ProfilController {
      * @return the profil by user id
      */
     @GetMapping("/user/{userId}")
-    public ResponseEntity<Profil> getProfilByUserId(@PathVariable String userId) {
+    public ResponseEntity<Profil> getProfilByUserId(@PathVariable final String userId) {
         Profil profil = profilService.getProfilByUserId(userId);
         if (profil != null) {
             return ResponseEntity.ok(profil);
@@ -76,7 +76,7 @@ public class ProfilController {
      * @return the response entity
      */
     @PostMapping
-    public ResponseEntity<String> createProfil(@RequestBody Profil profil) {
+    public ResponseEntity<String> createProfil(@RequestBody final Profil profil) {
         profilService.createProfil(profil);
         return ResponseEntity.ok("Profil envoyé via Kafka avec succès !");
     }
@@ -88,7 +88,7 @@ public class ProfilController {
      * @return the response entity
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProfil(@PathVariable String id) {
+    public ResponseEntity<String> deleteProfil(@PathVariable final String id) {
         Profil profil = profilService.getProfilByUserId(id);
         if (profil != null) {
             profilService.deleteProfil(id);

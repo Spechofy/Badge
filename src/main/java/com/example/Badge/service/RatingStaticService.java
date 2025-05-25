@@ -36,17 +36,17 @@ public class RatingStaticService {
      * @param minRate the min rate
      * @return the positive ratings
      */
-    public List<RatingStatic> getPositiveRatings(int minRate) {
+    public List<RatingStatic> getPositiveRatings(final int minRate) {
         return ratingStaticRepository.findByRateGreaterThan(minRate);
     }
 
     /**
-     * Save rating rating static.
+     * Save rating static.
      *
      * @param rating the rating
      * @return the rating static
      */
-    public RatingStatic saveRating(RatingStatic rating) {
+    public RatingStatic saveRating(final RatingStatic rating) {
 
         kafkaTemplate.send(Topics.RATING, new EventKafkaRatingStatic(Action.CREATE, rating));
         return rating;

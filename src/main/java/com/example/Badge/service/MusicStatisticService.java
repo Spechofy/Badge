@@ -44,8 +44,9 @@ public class MusicStatisticService {
      * @param musicStatistic the music statistic
      * @return the music statistic
      */
-    public MusicStatistic save(MusicStatistic musicStatistic) {
-        kafkaTemplate.send(Topics.MUSIC, new EventKafkaMusicStatistic(Action.CREATE, musicStatistic));
+    public MusicStatistic save(final MusicStatistic musicStatistic) {
+        kafkaTemplate.send(Topics.MUSIC,
+                new EventKafkaMusicStatistic(Action.CREATE, musicStatistic));
         return musicStatistic;
     }
 }

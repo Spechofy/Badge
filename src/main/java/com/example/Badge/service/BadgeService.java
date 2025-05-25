@@ -59,7 +59,7 @@ public class BadgeService {
      *
      * @param profilId the profil id
      */
-    public void assignBadgesToProfil(String profilId) {
+    public void assignBadgesToProfil(final String profilId) {
         Profil profil =
                 profilRepository
                         .findById(profilId)
@@ -98,7 +98,7 @@ public class BadgeService {
      * @param profilId  the profil id
      * @param badgeType the badge type
      */
-    private void saveBadge(String profilId, BadgeType badgeType) {
+    private void saveBadge(final String profilId, final BadgeType badgeType) {
         Badge badge = new Badge();
         badge.setProfilId(profilId);
         badge.setBadgeName(badgeType.getDisplayName());
@@ -111,7 +111,7 @@ public class BadgeService {
      * @param profilId the profil id
      * @return the nombre participations
      */
-    private int getNombreParticipations(String profilId) {
+    private int getNombreParticipations(final String profilId) {
         return eventService.countEventsByProfilId(profilId);
     }
 
@@ -130,7 +130,7 @@ public class BadgeService {
      * @param id the id
      * @return the badge by id
      */
-    public Optional<Badge> getBadgeById(String id) {
+    public Optional<Badge> getBadgeById(final String id) {
         return badgeRepository.findById(id);
     }
 
@@ -140,7 +140,7 @@ public class BadgeService {
      * @param profilId the profil id
      * @return the badges by profil id
      */
-    public List<Badge> getBadgesByProfilId(String profilId) {
+    public List<Badge> getBadgesByProfilId(final String profilId) {
         return badgeRepository.findByProfilId(profilId);
     }
 
@@ -153,7 +153,7 @@ public class BadgeService {
      *
      * @param id the id
      */
-    public void deleteBadge(String id) {
+    public void deleteBadge(final String id) {
         badgeRepository.deleteById(id);
     }
 }

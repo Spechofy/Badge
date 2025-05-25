@@ -29,7 +29,7 @@ public class BadgeAssigner {
      * @param comments the comments
      * @return the boolean
      */
-    public boolean shouldAssignCommentBadge(List<CommentsStatic> comments) {
+    public boolean shouldAssignCommentBadge(final List<CommentsStatic> comments) {
         long constructiveCount =
                 comments.stream().filter(c -> c.getRate() >= MIN_RATE_COMMENTS.getMin()).count();
 
@@ -43,7 +43,7 @@ public class BadgeAssigner {
      * @param ratings the ratings
      * @return the boolean
      */
-    public boolean shouldAssignPositiveRatingsBadge(List<RatingStatic> ratings) {
+    public boolean shouldAssignPositiveRatingsBadge(final List<RatingStatic> ratings) {
         return ratings.size() >= MIN_POSITIVE_RATINGS.getMin()
                 && !hasBadge(EVALUATIONS_POSITIVES.getDisplayName());
     }
@@ -54,9 +54,10 @@ public class BadgeAssigner {
      * @param stats the stats
      * @return the boolean
      */
-    public boolean shouldAssignMusicCompatibilityBadge(List<MusicStatistic> stats) {
+    public boolean shouldAssignMusicCompatibilityBadge(final List<MusicStatistic> stats) {
         double average =
-                stats.stream().mapToDouble(MusicStatistic::getMusicCompatibility).average().orElse(0.0);
+                stats.stream().mapToDouble(
+                        MusicStatistic::getMusicCompatibility).average().orElse(0.0);
 
         return average >= MIN_MUSIC_COMPATIBILITY.getMin()
                 && !hasBadge(COMPATIBILITE_MUSICALE.getDisplayName());
@@ -68,7 +69,7 @@ public class BadgeAssigner {
      * @param participationCount the participation count
      * @return the boolean
      */
-    public boolean shouldAssignParticipationBadge(int participationCount) {
+    public boolean shouldAssignParticipationBadge(final int participationCount) {
         return participationCount >= MIN_PARTICIPATION_EVENT.getMin()
                 && !hasBadge(PARTICIPATION.getDisplayName());
     }
@@ -79,7 +80,7 @@ public class BadgeAssigner {
      * @param badgeName the badge name
      * @return the boolean
      */
-    private boolean hasBadge(String badgeName) {
+    private boolean hasBadge(final String badgeName) {
         return existingBadges.stream().anyMatch(b -> b.getBadgeName().equalsIgnoreCase(badgeName));
     }
 }

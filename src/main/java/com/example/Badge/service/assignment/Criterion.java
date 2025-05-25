@@ -1,15 +1,18 @@
 package com.example.Badge.service.assignment;
 
+import lombok.Getter;
+
 /**
  * The enum Criterion.
  */
+@Getter
 public enum Criterion {
     /**
      * Min participation event criterion.
      */
     MIN_PARTICIPATION_EVENT(5),
     /**
-     * Min positive ratings criterion.
+     * Min positive ratings' criterion.
      */
     MIN_POSITIVE_RATINGS(3),
     /**
@@ -35,16 +38,9 @@ public enum Criterion {
      *
      * @param min the min
      */
-    Criterion(double min) {
+    Criterion(final double min) {
         this.min = min;
     }
 
-    /**
-     * Gets min.
-     *
-     * @return the min
-     */
-    public double getMin() {
-        return min;
-    }
+
 }

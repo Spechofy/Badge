@@ -38,7 +38,7 @@ public class EventService {
      * @param event the event
      * @return the event
      */
-    public Event saveEvent(Event event) {
+    public Event saveEvent(final Event event) {
         kafkaTemplate.send(Topics.EVENT, new EventKafkaEvent(Action.CREATE, event));
         return eventRepository.save(event);
     }
@@ -49,7 +49,7 @@ public class EventService {
      * @param profilId the profil id
      * @return the events by profil id
      */
-    public List<Event> getEventsByProfilId(String profilId) {
+    public List<Event> getEventsByProfilId(final String profilId) {
         return eventRepository.findByProfilId(profilId);
     }
 
@@ -68,7 +68,7 @@ public class EventService {
      * @param profilId the profil id
      * @return the int
      */
-    public int countEventsByProfilId(String profilId) {
+    public int countEventsByProfilId(final String profilId) {
         return getEventsByProfilId(profilId).size();
     }
 }

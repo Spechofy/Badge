@@ -22,13 +22,13 @@ public class EventController {
     private final EventService eventService;
 
     /**
-     * Create event event.
+     * Create event.
      *
      * @param event the event
      * @return the event
      */
     @PostMapping
-    public Event createEvent(@RequestBody Event event) {
+    public Event createEvent(@RequestBody final Event event) {
         return eventService.saveEvent(event);
     }
 
@@ -39,7 +39,7 @@ public class EventController {
      * @return the events by profil
      */
     @GetMapping("/profil/{profilId}")
-    public List<Event> getEventsByProfil(@PathVariable String profilId) {
+    public List<Event> getEventsByProfil(@PathVariable final String profilId) {
         return eventService.getEventsByProfilId(profilId);
     }
 

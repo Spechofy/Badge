@@ -36,7 +36,7 @@ public class CommentsStaticService {
      * @param userId the user id
      * @return the comments by user id
      */
-    public List<CommentsStatic> getCommentsByUserId(String userId) {
+    public List<CommentsStatic> getCommentsByUserId(final String userId) {
         return commentsStaticRepository.findByUserId(userId);
     }
 
@@ -46,7 +46,7 @@ public class CommentsStaticService {
      * @param comment the comment
      * @return the comments static
      */
-    public CommentsStatic saveComment(CommentsStatic comment) {
+    public CommentsStatic saveComment(final CommentsStatic comment) {
         kafkaTemplate.send(Topics.COMMENT, new EventKafkaCommentsStatic(Action.CREATE, comment));
         return comment;
     }

@@ -5,6 +5,7 @@ import com.example.Badge.service.RatingStaticService;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/ratings")
+@AllArgsConstructor
 public class RatingStaticController {
 
     /**
@@ -19,14 +21,7 @@ public class RatingStaticController {
      */
     private final RatingStaticService ratingStaticService;
 
-    /**
-     * Instantiates a new Rating static controller.
-     *
-     * @param ratingStaticService the rating static service
-     */
-    public RatingStaticController(RatingStaticService ratingStaticService) {
-        this.ratingStaticService = ratingStaticService;
-    }
+
 
     /**
      * Gets positive ratings.
@@ -35,18 +30,18 @@ public class RatingStaticController {
      * @return the positive ratings
      */
     @GetMapping("/positive")
-    public List<RatingStatic> getPositiveRatings(@RequestParam(defaultValue = "3") int minRate) {
+    public List<RatingStatic> getPositiveRatings(@RequestParam final int minRate) {
         return ratingStaticService.getPositiveRatings(minRate);
     }
 
     /**
-     * Save rating rating static.
+     * Save rating static.
      *
      * @param rating the rating
      * @return the rating static
      */
     @PostMapping
-    public RatingStatic saveRating(@RequestBody RatingStatic rating) {
+    public RatingStatic saveRating(@RequestBody final RatingStatic rating) {
         return ratingStaticService.saveRating(rating);
     }
 }

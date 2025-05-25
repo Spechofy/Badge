@@ -36,6 +36,7 @@ public class EventKafkaConsumer {
                 evenRepository.delete(even);
                 break;
             default:
+
                 break;
         }
     }

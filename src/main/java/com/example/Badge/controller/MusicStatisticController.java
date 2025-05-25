@@ -24,7 +24,7 @@ public class MusicStatisticController {
      *
      * @param musicStatisticService the music statistic service
      */
-    public MusicStatisticController(MusicStatisticService musicStatisticService) {
+    public MusicStatisticController(final MusicStatisticService musicStatisticService) {
         this.musicStatisticService = musicStatisticService;
     }
 
@@ -45,7 +45,7 @@ public class MusicStatisticController {
      * @return the music statistic
      */
     @PostMapping
-    public MusicStatistic save(@RequestBody MusicStatistic musicStatistic) {
+    public MusicStatistic save(@RequestBody final MusicStatistic musicStatistic) {
         return musicStatisticService.save(musicStatistic);
     }
 }

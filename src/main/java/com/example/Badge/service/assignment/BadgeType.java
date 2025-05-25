@@ -1,8 +1,12 @@
 package com.example.Badge.service.assignment;
 
+import lombok.Getter;
+
+
 /**
  * The enum Badge type.
  */
+@Getter
 public enum BadgeType {
 
     /**
@@ -46,26 +50,9 @@ public enum BadgeType {
      * @param displayName the display name
      * @param description the description
      */
-    BadgeType(String displayName, String description) {
+    BadgeType(final String displayName, final String description) {
         this.displayName = displayName;
         this.description = description;
     }
 
-    /**
-     * Gets display name.
-     *
-     * @return the display name
-     */
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    /**
-     * Gets description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
 }
