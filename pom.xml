@@ -30,7 +30,6 @@
         <java.version>21</java.version>
         <sonar.projectKey>spechofy-badges</sonar.projectKey>
         <sonar.projectName>spechofy-badges</sonar.projectName>
-        <sonar.login>SONAR_TOKEN_BADGES</sonar.login>
     </properties>
     <dependencies>
         <dependency>
