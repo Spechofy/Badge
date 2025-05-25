@@ -1,6 +1,11 @@
 package com.example.Badge.service;
 
-import com.example.Badge.model.*;
+
+import com.example.Badge.model.Profil;
+import com.example.Badge.model.Badge;
+import com.example.Badge.model.CommentsStatic;
+import com.example.Badge.model.RatingStatic;
+import com.example.Badge.model.MusicStatistic;
 import com.example.Badge.repository.BadgeRepository;
 import com.example.Badge.repository.ProfilRepository;
 import com.example.Badge.service.assignment.BadgeAssigner;

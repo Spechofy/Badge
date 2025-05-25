@@ -1,7 +1,19 @@
 package com.example.Badge.service.assignment;
 
-import static com.example.Badge.service.assignment.BadgeType.*;
-import static com.example.Badge.service.assignment.Criterion.*;
+import static com.example.Badge.service.assignment.BadgeType.COMMENTAIRES;
+import static com.example.Badge.service.assignment.BadgeType.PARTICIPATION;
+import static com.example.Badge.service.assignment.BadgeType.COMPATIBILITE_MUSICALE;
+import static com.example.Badge.service.assignment.BadgeType.EVALUATIONS_POSITIVES;
+
+import static com.example.Badge.service.assignment.Criterion.MIN_CONSTRUCTIVE_COMMENTS;
+import static com.example.Badge.service.assignment.Criterion.MIN_MUSIC_COMPATIBILITY;
+import static com.example.Badge.service.assignment.Criterion.MIN_PARTICIPATION_EVENT;
+import static com.example.Badge.service.assignment.Criterion.MIN_RATE_COMMENTS;
+import static com.example.Badge.service.assignment.Criterion.MIN_POSITIVE_RATINGS;
+
+
+
+
 
 import com.example.Badge.model.Badge;
 import com.example.Badge.model.CommentsStatic;
